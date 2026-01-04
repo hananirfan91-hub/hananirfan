@@ -99,7 +99,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent via-primary to-navy-light;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent via-blue-400 to-cyan-400;
   }
 
   .bg-gradient-navy {
@@ -112,6 +112,10 @@
 
   .bg-gradient-card {
     background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--secondary)) 100%);
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 
   .glow-sm {
@@ -130,6 +134,10 @@
     border: 1px solid transparent;
     background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
                 linear-gradient(135deg, hsl(var(--navy-light) / 0.5), hsl(var(--border))) border-box;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
   }
 }
 
