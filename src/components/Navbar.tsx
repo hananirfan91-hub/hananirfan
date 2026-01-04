@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { Home, User, FolderOpen, Mail, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import logo from "@/assets/logo.png";
+import { motion } from "framer-motion";
+import logo from "@/assets/logo-text.png";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
