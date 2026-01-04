@@ -2,23 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio</title>
+    <meta name="title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio" />
+    <meta name="description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan. Explore projects, stories, and innovations." />
+    <meta name="keywords" content="Hanan Irfan, Portfolio, CS Student, AI Developer, Graphic Designer, KFUEIT, Rahim Yar Khan, Web Development, Pakistan" />
+    <meta name="author" content="Hanan Irfan" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://hananirfan.com/" />
+    <meta property="og:title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio" />
+    <meta property="og:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan." />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://hananirfan.com/" />
+    <meta property="twitter:title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio" />
+    <meta property="twitter:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan." />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1e3a8a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Hanan Irfan" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://hananirfan.com/" />
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hanan Irfan",
+      "url": "https://hananirfan.com",
+      "image": "/profile.png",
+      "sameAs": [
+        "https://instagram.com/tearswithhanan/",
+        "https://tiktok.com/@pathan_x_babarian565",
+        "https://facebook.com/HananIrfan001"
+      ],
+      "jobTitle": "CS Student & AI Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "KFUEIT"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Khwaja Fareed University of Engineering and Information Technology"
+      },
+      "knowsAbout": ["Computer Science", "AI Development", "Graphic Design", "Web Development"]
+    }
+    </script>
   </head>
-
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
