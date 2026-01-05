@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Code, Palette, Brain, ChevronDown, Sparkles, Rocket, ExternalLink, Newspaper } from "lucide-react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 import { Layout } from "@/components/Layout";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -8,7 +9,8 @@ import { ParticleBackground } from "@/components/ParticleBackground";
 import { LiveActivity } from "@/components/LiveActivity";
 import { TypeWriter } from "@/components/TypeWriter";
 import { GlowingOrb } from "@/components/GlowingOrb";
-import profileImage from "@/assets/profile-cropped.png";
+import { InstallPrompt } from "@/components/InstallPrompt";
+import profileImage from "@/assets/profile-new.png";
 import projectBabarazam from "@/assets/project-babarazam.jpg";
 import projectHadith from "@/assets/project-hadith.jpg";
 import projectQuickwork from "@/assets/project-quickwork.jpg";
@@ -52,9 +54,27 @@ const stats = [
 
 const Index = () => {
   return (
-    <Layout>
-      <ParticleBackground />
-      <LiveActivity />
+    <>
+      <Helmet>
+        <title>Hanan Irfan | CS Student, AI Developer & Graphic Designer Portfolio - Rahim Yar Khan</title>
+        <meta
+          name="description"
+          content="Hanan Irfan is a Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan, Pakistan. View portfolio, projects, and get in touch!"
+        />
+        <meta
+          name="keywords"
+          content="Hanan Irfan, KFUEIT, Rahim Yar Khan developer, AI developer Pakistan, graphic designer portfolio, web developer, QuickWorks IT Center"
+        />
+        <meta property="og:title" content="Hanan Irfan | CS Student, AI Developer & Designer" />
+        <meta property="og:description" content="Portfolio of Hanan Irfan - Building innovative digital experiences with AI, Web Development, and Design" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://hananirfan.com" />
+      </Helmet>
+
+      <Layout>
+        <ParticleBackground />
+        <LiveActivity />
+        <InstallPrompt />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -389,7 +409,8 @@ const Index = () => {
           </AnimatedSection>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
