@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Mail, MapPin, Send, Instagram, Facebook, ExternalLink, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet";
 
 const socialLinks = [
   {
@@ -65,9 +66,21 @@ const Contact = () => {
   };
 
   return (
-    <Layout>
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero">
+    <>
+      <Helmet>
+        <title>Contact Hanan Irfan | Hire Web Developer & Designer - Rahim Yar Khan</title>
+        <meta
+          name="description"
+          content="Get in touch with Hanan Irfan for web development, AI projects, and graphic design work. Based in Rahim Yar Khan, Pakistan. Quick response guaranteed!"
+        />
+        <meta
+          name="keywords"
+          content="contact Hanan Irfan, hire web developer Pakistan, Rahim Yar Khan developer, freelance designer contact"
+        />
+      </Helmet>
+      <Layout>
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-6">
           <AnimatedSection className="text-center max-w-3xl mx-auto">
             <span className="inline-block px-4 py-2 bg-navy/20 text-accent rounded-full text-sm font-medium border border-navy/30 mb-6">
@@ -253,7 +266,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

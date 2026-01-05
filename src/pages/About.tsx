@@ -1,7 +1,8 @@
 import { Layout } from "@/components/Layout";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { GraduationCap, MapPin, Calendar, Code, Palette, Brain, Award } from "lucide-react";
-import profileImage from "@/assets/profile.png";
+import { Helmet } from "react-helmet";
+import profileImage from "@/assets/profile-new.png";
 
 const education = [
   {
@@ -21,7 +22,19 @@ const skills = {
 
 const About = () => {
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>About Hanan Irfan | CS Student at KFUEIT - Rahim Yar Khan, Pakistan</title>
+        <meta
+          name="description"
+          content="Learn about Hanan Irfan - Computer Science student at KFUEIT, AI developer, and graphic designer from Rahim Yar Khan, Pakistan. Education, skills, and journey."
+        />
+        <meta
+          name="keywords"
+          content="Hanan Irfan about, KFUEIT student, Rahim Yar Khan developer, AI machine learning, graphic design Pakistan"
+        />
+      </Helmet>
+      <Layout>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-6">
@@ -205,7 +218,8 @@ const About = () => {
           </div>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
