@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { GraduationCap, MapPin, Calendar, Code, Palette, Brain, Award } from "lucide-react";
 import { Helmet } from "react-helmet";
-import profileImage from "@/assets/profile-new.png";
+import profileImage from "@/assets/profile-cropped.png";
 
 const education = [
   {

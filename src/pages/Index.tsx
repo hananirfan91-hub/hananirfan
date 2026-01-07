@@ -10,7 +10,7 @@ import { LiveActivity } from "@/components/LiveActivity";
 import { TypeWriter } from "@/components/TypeWriter";
 import { GlowingOrb } from "@/components/GlowingOrb";
 import { InstallPrompt } from "@/components/InstallPrompt";
-import profileImage from "@/assets/profile-new.png";
+import profileImage from "@/assets/profile-cropped.png";
 import projectBabarazam from "@/assets/project-babarazam.jpg";
 import projectHadith from "@/assets/project-hadith.jpg";
 import projectQuickwork from "@/assets/project-quickwork.jpg";

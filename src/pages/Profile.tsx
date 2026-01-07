@@ -22,9 +22,13 @@ import {
   Coffee,
   BookOpen,
   Laptop,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Helmet } from "react-helmet";
-import profileImage from "@/assets/profile-new.png";
+import { useToast } from "@/hooks/use-toast";
+import { MiniGame } from "@/components/MiniGame";
+import profileImage from "@/assets/profile-cropped.png";
 
 // Simulated real-time data
 const useRealTimeStats = () => {
@@ -75,6 +79,37 @@ const interests = [
 const Profile = () => {
   const stats = useRealTimeStats();
   const [activeTab, setActiveTab] = useState<"overview" | "timeline" | "achievements">("overview");
+  const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
+
+  const handleShareProfile = async () => {
+    const profileUrl = window.location.href;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Hanan Irfan - Developer & Designer",
+          text: "Check out Hanan Irfan's portfolio - CS Student, AI Developer & Graphic Designer",
+          url: profileUrl,
+        });
+      } catch (err) {
+        // User cancelled or share failed, fallback to clipboard
+        copyToClipboard(profileUrl);
+      }
+    } else {
+      copyToClipboard(profileUrl);
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    toast({
+      title: "Link Copied!",
+      description: "Profile link copied to clipboard",
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <>
@@ -174,9 +209,12 @@ const Profile = () => {
                       <MessageCircle className="inline mr-2" size={18} />
                       Contact Me
                     </a>
-                    <button className="px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium border border-border hover:bg-secondary/80 transition-all">
-                      <Share2 className="inline mr-2" size={18} />
-                      Share Profile
+                    <button 
+                      onClick={handleShareProfile}
+                      className="px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium border border-border hover:bg-secondary/80 transition-all"
+                    >
+                      {copied ? <Check className="inline mr-2" size={18} /> : <Share2 className="inline mr-2" size={18} />}
+                      {copied ? "Copied!" : "Share Profile"}
                     </button>
                   </div>
                 </AnimatedSection>
@@ -305,6 +343,11 @@ const Profile = () => {
                       ))}
                     </div>
                   </div>
+                </AnimatedSection>
+
+                {/* Mini Game */}
+                <AnimatedSection delay={200}>
+                  <MiniGame />
                 </AnimatedSection>
               </div>
             )}
