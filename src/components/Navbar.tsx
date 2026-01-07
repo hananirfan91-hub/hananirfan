@@ -3,6 +3,7 @@ import { Home, User, FolderOpen, Mail, Image, UserCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo-new.png";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
@@ -46,7 +47,7 @@ export const Navbar = () => {
               />
             </Link>
 
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-6">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -63,6 +64,7 @@ export const Navbar = () => {
                   )}
                 </Link>
               ))}
+              <DarkModeToggle />
             </div>
           </div>
         </div>
