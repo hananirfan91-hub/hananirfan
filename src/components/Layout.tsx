@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { AdBanner } from "./AdBanner";
+import { BackgroundMusic } from "./BackgroundMusic";
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,6 +18,7 @@ export const Layout = ({ children }: LayoutProps) => {
       </div>
       <main className="flex-1 pt-0 md:pt-0">{children}</main>
       <Footer />
+      <BackgroundMusic />
     </div>
   );
 };
