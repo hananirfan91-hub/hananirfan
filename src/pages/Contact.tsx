@@ -215,7 +215,9 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-medium mb-1">Email</h3>
-                        <p className="text-muted-foreground text-sm">hananirfan@example.com</p>
+                        <a href="mailto:hananirfan91@gmail.com" className="text-muted-foreground text-sm hover:text-accent transition-colors">
+                          hananirfan91@gmail.com
+                        </a>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
