@@ -4,36 +4,16 @@ import { motion } from "framer-motion";
 
 export const BackgroundMusic = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Background music URL - using a royalty-free ambient track
   const musicUrl = "https://cdn.pixabay.com/audio/2024/11/28/audio_2c7f05ab65.mp3";
 
   useEffect(() => {
-    // Handle user interaction to enable autoplay
-    const handleInteraction = () => {
-      if (!hasInteracted) {
-        setHasInteracted(true);
-        if (audioRef.current) {
-          audioRef.current.volume = 0.3;
-          audioRef.current.play().then(() => {
-            setIsPlaying(true);
-          }).catch(() => {
-            // Autoplay blocked, user needs to click
-          });
-        }
-      }
-    };
-
-    document.addEventListener("click", handleInteraction, { once: true });
-    document.addEventListener("touchstart", handleInteraction, { once: true });
-
-    return () => {
-      document.removeEventListener("click", handleInteraction);
-      document.removeEventListener("touchstart", handleInteraction);
-    };
-  }, [hasInteracted]);
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+    }
+  }, []);
 
   const toggleMusic = () => {
     if (audioRef.current) {

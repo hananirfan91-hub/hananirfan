@@ -64,7 +64,7 @@ export const AdBanner = ({ className = "" }: AdBannerProps) => {
             <img
               src={adImage}
               alt="Lahore Book Mart - A Book Bazaar with a Lahori Soul"
-              className="w-full h-full object-fill"
+              className="w-full h-full object-cover"
             />
           </motion.a>
         ) : (
@@ -83,7 +83,7 @@ export const AdBanner = ({ className = "" }: AdBannerProps) => {
               muted
               loop
               playsInline
-              className="w-full h-full object-fill"
+              className="w-full h-full object-cover"
             />
           </motion.a>
         )}
