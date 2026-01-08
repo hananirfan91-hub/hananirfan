@@ -32,9 +32,9 @@ export const QRCodePrompt = () => {
 
   if (isInstalled || !showPrompt) return null;
 
-  // Generate QR code URL using Google Charts API
+  // Generate QR code URL - links to manifest for PWA install
   const currentUrl = typeof window !== "undefined" ? window.location.origin : "";
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}&bgcolor=0a0d14&color=3b82f6`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl + "?utm_source=qr&utm_medium=scan")}&bgcolor=ffffff&color=000000`;
 
   return (
     <AnimatePresence>

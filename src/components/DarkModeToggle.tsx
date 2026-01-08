@@ -3,32 +3,30 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export const DarkModeToggle = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    // Check localStorage first, default to dark
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem("theme");
+      return stored !== "light";
+    }
+    return true;
+  });
 
   useEffect(() => {
-    // Default to dark mode (current theme)
-    const stored = localStorage.getItem("theme");
-    if (stored === "light") {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    } else {
-      // Default is dark
-      setIsDark(true);
+    // Apply theme on mount and when isDark changes
+    if (isDark) {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
       localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+      localStorage.setItem("theme", "light");
     }
-  }, []);
+  }, [isDark]);
 
   const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDark(true);
-    }
+    setIsDark(prev => !prev);
   };
 
   return (
