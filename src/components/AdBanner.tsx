@@ -79,11 +79,12 @@ export const AdBanner = ({ className = "" }: AdBannerProps) => {
           >
             <video
               ref={videoRef}
-              src="/videos/ad-banner.mp4"
+              src="https://quickworkitcenter.lovable.app/lahore-bookmart-video.mp4"
               muted
               loop
               playsInline
               className="w-full h-full object-cover"
+              crossOrigin="anonymous"
             />
           </motion.a>
         )}

@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { AdBanner } from "./AdBanner";
-import { BackgroundMusic } from "./BackgroundMusic";
 import { QRCodePrompt } from "./QRCodePrompt";
 import { LiveVisitors } from "./LiveVisitors";
 
@@ -22,7 +21,6 @@ export const Layout = ({ children }: LayoutProps) => {
       </div>
       <main className="flex-1 pt-0">{children}</main>
       <Footer />
-      <BackgroundMusic />
     </div>
   );
 };
