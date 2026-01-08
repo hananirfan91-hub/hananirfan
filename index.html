@@ -8,23 +8,27 @@
     <title>Hanan Irfan - Portfolio | AI Developer, CS Student & Graphic Designer</title>
     <meta name="title" content="Hanan Irfan - Portfolio | AI Developer, CS Student & Graphic Designer" />
     <meta name="description" content="Hanan Irfan - Official portfolio of a Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan, Pakistan. Explore projects and innovations by Hanan Irfan.">
-    <meta name="keywords" content="Hanan Irfan, hanan irfan, Hanan, Irfan, Portfolio, CS Student, AI Developer, Graphic Designer, KFUEIT, Rahim Yar Khan, Web Development, Pakistan, hanan irfan portfolio, hanan irfan developer">
+    <meta name="keywords" content="Hanan Irfan, hanan irfan, Hanan, Irfan, Portfolio, CS Student, AI Developer, Graphic Designer, KFUEIT, Rahim Yar Khan, Web Development, Pakistan, hanan irfan portfolio, hanan irfan developer, hanan irfan ai, hanan irfan ryk">
     <meta name="author" content="Hanan Irfan" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hananirfan.com/" />
-    
-    
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:title" content="Hanan Irfan | CS Student, AI Developer & Graphic Designer Portfolio" />
+    <meta property="og:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan. Explore projects, stories, and innovations." />
+    <meta property="og:image" content="/favicon.png" />
+    <meta property="og:site_name" content="Hanan Irfan Portfolio" />
+    <meta property="og:locale" content="en_US" />
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://hananirfan.com/" />
-    <meta property="twitter:title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio" />
-    <meta property="twitter:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan." />
-    <meta property="twitter:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://hananirfan.com/" />
+    <meta name="twitter:title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio" />
+    <meta name="twitter:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan." />
+    <meta name="twitter:image" content="/favicon.png" />
+    <meta name="twitter:creator" content="@hananirfan" />
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
@@ -40,20 +44,28 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://hananirfan.com/" />
     
+    <!-- Additional SEO -->
+    <meta name="geo.region" content="PK-PB" />
+    <meta name="geo.placename" content="Rahim Yar Khan" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Hanan Irfan",
+      "alternateName": ["hanan irfan", "Hanan", "Irfan"],
       "url": "https://hananirfan.com",
-      "image": "/profile.png",
+      "image": "/favicon.png",
+      "description": "Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan, Pakistan",
       "sameAs": [
         "https://instagram.com/tearswithhanan/",
         "https://tiktok.com/@pathan_x_babarian565",
         "https://facebook.com/HananIrfan001"
       ],
-      "jobTitle": "CS Student & AI Developer",
+      "jobTitle": ["CS Student", "AI Developer", "Graphic Designer"],
       "worksFor": {
         "@type": "Organization",
         "name": "KFUEIT"
@@ -62,15 +74,32 @@
         "@type": "EducationalOrganization",
         "name": "Khwaja Fareed University of Engineering and Information Technology"
       },
-      "knowsAbout": ["Computer Science", "AI Development", "Graphic Design", "Web Development"]
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rahim Yar Khan",
+        "addressRegion": "Punjab",
+        "addressCountry": "Pakistan"
+      },
+      "knowsAbout": ["Computer Science", "AI Development", "Graphic Design", "Web Development", "React", "TypeScript", "Python"]
     }
     </script>
-    <meta property="og:title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio">
-  <meta name="twitter:title" content="Hanan Irfan | CS Student, AI Developer, Graphic Designer Portfolio">
-  <meta property="og:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan. Explore projects, stories, and innovations.">
-  <meta name="twitter:description" content="Portfolio of Hanan Irfan - Computer Science student at KFUEIT, AI Developer, and Graphic Designer from Rahim Yar Khan. Explore projects, stories, and innovations.">
-  <meta name="twitter:card" content="summary_large_image">
-</head>
+    
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Hanan Irfan Portfolio",
+      "alternateName": "hanan irfan",
+      "url": "https://hananirfan.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://hananirfan.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ProjectCard } from "@/components/ProjectCard";
+import { CommunityProjects } from "@/components/CommunityProjects";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { Sparkles, Rocket } from "lucide-react";
@@ -98,6 +99,9 @@ const Projects = () => {
             </div>
           </div>
         </section>
+
+        {/* Community Projects Section */}
+        <CommunityProjects />
 
         {/* More Projects Coming */}
         <section className="py-20 bg-gradient-to-r from-accent/5 via-transparent to-accent/5">
