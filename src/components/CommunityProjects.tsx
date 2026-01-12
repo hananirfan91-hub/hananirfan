@@ -104,44 +104,71 @@ export const CommunityProjects = () => {
       return;
     }
 
+    // Client-side validation for better UX
+    if (formData.title.length > 200) {
+      toast({
+        title: "Title too long",
+        description: "Title must be 200 characters or less.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (formData.description && formData.description.length > 2000) {
+      toast({
+        title: "Description too long",
+        description: "Description must be 2000 characters or less.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (formData.uploader_name && formData.uploader_name.length > 100) {
+      toast({
+        title: "Name too long",
+        description: "Name must be 100 characters or less.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setUploading(true);
     try {
-      const fileExt = selectedFile.name.split(".").pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+      // Use Edge Function for secure upload with rate limiting
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', selectedFile);
+      uploadFormData.append('title', formData.title);
+      uploadFormData.append('description', formData.description || '');
+      uploadFormData.append('uploader_name', formData.uploader_name || '');
 
-      const { error: uploadError } = await supabase.storage
-        .from("project-files")
-        .upload(fileName, selectedFile);
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/upload-project`,
+        {
+          method: 'POST',
+          body: uploadFormData,
+        }
+      );
 
-      if (uploadError) throw uploadError;
+      const result = await response.json();
 
-      const { data: { publicUrl } } = supabase.storage
-        .from("project-files")
-        .getPublicUrl(fileName);
-
-      const { error: dbError } = await supabase.from("community_projects").insert({
-        title: formData.title,
-        description: formData.description || null,
-        file_url: publicUrl,
-        file_type: selectedFile.type,
-        file_name: selectedFile.name,
-        uploader_name: formData.uploader_name || "Anonymous",
-      });
-
-      if (dbError) throw dbError;
+      if (!response.ok) {
+        throw new Error(result.error || 'Upload failed');
+      }
 
       toast({
         title: "Project uploaded!",
-        description: "Your project is now visible to everyone.",
+        description: result.remaining_uploads !== undefined 
+          ? `Your project is now visible. ${result.remaining_uploads} uploads remaining this hour.`
+          : "Your project is now visible to everyone.",
       });
 
       setShowUploadModal(false);
       setFormData({ title: "", description: "", uploader_name: "" });
       setSelectedFile(null);
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Upload failed",
-        description: "Please try again later.",
+        description: error.message || "Please try again later.",
         variant: "destructive",
       });
     } finally {
