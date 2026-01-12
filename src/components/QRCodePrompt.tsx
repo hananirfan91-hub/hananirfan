@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, Smartphone, QrCode } from "lucide-react";
+import QRCode from "react-qr-code";
 import profileImage from "@/assets/profile-cropped.png";
 
 export const QRCodePrompt = () => {
@@ -34,7 +35,7 @@ export const QRCodePrompt = () => {
 
   // Generate QR code URL - links to manifest for PWA install
   const currentUrl = typeof window !== "undefined" ? window.location.origin : "";
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl + "?utm_source=qr&utm_medium=scan")}&bgcolor=ffffff&color=000000`;
+  const qrCodeValue = currentUrl + "?utm_source=qr&utm_medium=scan";
 
   return (
     <AnimatePresence>
@@ -94,12 +95,14 @@ export const QRCodePrompt = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5 }}
-            className="mx-auto w-48 h-48 p-3 bg-white rounded-2xl shadow-lg mb-6"
+            className="mx-auto w-48 h-48 p-3 bg-white rounded-2xl shadow-lg mb-6 flex items-center justify-center"
           >
-            <img
-              src={qrCodeUrl}
-              alt="Scan to install Hanan Irfan App"
-              className="w-full h-full"
+            <QRCode
+              value={qrCodeValue}
+              size={168}
+              bgColor="#ffffff"
+              fgColor="#000000"
+              level="M"
             />
           </motion.div>
 
