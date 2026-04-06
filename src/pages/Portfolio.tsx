@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { Section } from '../components/ui/Section';
 import { supabase, Project } from '../lib/supabase';
@@ -81,7 +82,7 @@ export function Portfolio() {
         ) : filteredProjects.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="glass-card overflow-hidden group hover-lift flex flex-col">
+              <Link to={`/project/${project.id}`} key={project.id} className="glass-card overflow-hidden group hover-lift flex flex-col cursor-pointer">
                 <div className="relative h-48 overflow-hidden">
                   <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10" />
                   <img
@@ -93,18 +94,16 @@ export function Portfolio() {
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <span className="text-xs font-medium text-cyan-400 mb-2">{project.category}</span>
-                  <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                  <p className="text-slate-400 mb-6 flex-grow text-sm">{project.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{project.title}</h3>
+                  <p className="text-slate-400 mb-6 flex-grow text-sm line-clamp-3">{project.description}</p>
                   
                   <div className="flex items-center gap-4 mt-auto">
-                    {project.live_url && (
-                      <a href={project.live_url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-white hover:text-cyan-400 transition-colors">
-                        <ExternalLink size={16} /> Live
-                      </a>
-                    )}
+                    <span className="flex items-center gap-2 text-sm font-medium text-white group-hover:text-cyan-400 transition-colors">
+                      View Details <ExternalLink size={16} />
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (

@@ -11,6 +11,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Portfolio } from './pages/Portfolio';
+import { ProjectDetails } from './pages/ProjectDetails';
 import { Contact } from './pages/Contact';
 import { Auth } from './pages/Auth';
 import { Admin } from './pages/Admin';
@@ -26,6 +27,7 @@ export default function App() {
               <Route path="about" element={<About />} />
               <Route path="services" element={<Services />} />
               <Route path="portfolio" element={<Portfolio />} />
+              <Route path="project/:id" element={<ProjectDetails />} />
               <Route path="contact" element={<Contact />} />
               <Route path="auth" element={<Auth />} />
               <Route path="admin" element={<Admin />} />

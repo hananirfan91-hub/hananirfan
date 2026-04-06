@@ -14,5 +14,8 @@ export type Project = {
   category: string;
   image_url: string;
   live_url?: string;
+  github_url?: string;
+  tags?: string[];
+  additional_images?: string[];
   created_at: string;
 };

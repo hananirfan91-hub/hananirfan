@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { supabase, Project } from '../lib/supabase';
 import { SEO } from '../components/SEO';
 import { Section } from '../components/ui/Section';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Edit2, Upload, X } from 'lucide-react';
 
 export function Admin() {
   const { user, isAdmin, loading: authLoading } = useAuth();
@@ -14,11 +14,19 @@ export function Admin() {
   const [message, setMessage] = useState('');
 
   // Form state
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Web Development');
-  const [imageUrl, setImageUrl] = useState('');
   const [liveUrl, setLiveUrl] = useState('');
+  const [githubUrl, setGithubUrl] = useState('');
+  const [tags, setTags] = useState('');
+  
+  // Image state
+  const [mainImageFile, setMainImageFile] = useState<File | null>(null);
+  const [additionalImageFiles, setAdditionalImageFiles] = useState<FileList | null>(null);
+  const [existingImageUrl, setExistingImageUrl] = useState('');
+  const [existingAdditionalImages, setExistingAdditionalImages] = useState<string[]>([]);
 
   useEffect(() => {
     if (!authLoading && (!user || !isAdmin)) {
@@ -33,35 +41,89 @@ export function Admin() {
     if (data) setProjects(data);
   };
 
-  const handleAddProject = async (e: React.FormEvent) => {
+  const uploadImage = async (file: File) => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Math.random()}.${fileExt}`;
+    const filePath = `${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('project-images')
+      .upload(filePath, file);
+
+    if (uploadError) {
+      throw uploadError;
+    }
+
+    const { data } = supabase.storage.from('project-images').getPublicUrl(filePath);
+    return data.publicUrl;
+  };
+
+  const handleAddOrUpdateProject = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
 
     try {
-      const { error } = await supabase.from('projects').insert([
-        {
-          title,
-          description,
-          category,
-          image_url: imageUrl,
-          live_url: liveUrl,
-        }
-      ]);
+      let finalImageUrl = existingImageUrl;
+      let finalAdditionalImages = [...existingAdditionalImages];
 
-      if (error) throw error;
+      // Upload main image if a new one is selected
+      if (mainImageFile) {
+        finalImageUrl = await uploadImage(mainImageFile);
+      } else if (!existingImageUrl && !editingId) {
+        throw new Error('Please select a main image.');
+      }
+
+      // Upload additional images if selected
+      if (additionalImageFiles && additionalImageFiles.length > 0) {
+        const uploadPromises = Array.from(additionalImageFiles).map(file => uploadImage(file));
+        const newImageUrls = await Promise.all(uploadPromises);
+        finalAdditionalImages = [...finalAdditionalImages, ...newImageUrls];
+      }
+
+      const projectData = {
+        title,
+        description,
+        category,
+        image_url: finalImageUrl,
+        live_url: liveUrl,
+        github_url: githubUrl,
+        tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag !== ''),
+        additional_images: finalAdditionalImages,
+      };
+
+      if (editingId) {
+        const { error } = await supabase.from('projects').update(projectData).eq('id', editingId);
+        if (error) throw error;
+        setMessage('Project updated successfully!');
+      } else {
+        const { error } = await supabase.from('projects').insert([projectData]);
+        if (error) throw error;
+        setMessage('Project added successfully!');
+      }
       
-      setMessage('Project added successfully!');
-      setTitle('');
-      setDescription('');
-      setImageUrl('');
-      setLiveUrl('');
+      resetForm();
       fetchProjects();
     } catch (error: any) {
-      setMessage(error.message || 'Error adding project. Make sure the "projects" table exists in Supabase.');
+      setMessage(error.message || 'Error saving project. Ensure "projects" table and "project-images" bucket exist.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleEdit = (project: Project) => {
+    setEditingId(project.id);
+    setTitle(project.title);
+    setDescription(project.description);
+    setCategory(project.category);
+    setLiveUrl(project.live_url || '');
+    setGithubUrl(project.github_url || '');
+    setTags(project.tags ? project.tags.join(', ') : '');
+    setExistingImageUrl(project.image_url);
+    setExistingAdditionalImages(project.additional_images || []);
+    setMainImageFile(null);
+    setAdditionalImageFiles(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleDelete = async (id: string) => {
@@ -72,6 +134,20 @@ export function Admin() {
     } catch (error: any) {
       setMessage(error.message || 'Error deleting project.');
     }
+  };
+
+  const resetForm = () => {
+    setEditingId(null);
+    setTitle('');
+    setDescription('');
+    setCategory('Web Development');
+    setLiveUrl('');
+    setGithubUrl('');
+    setTags('');
+    setMainImageFile(null);
+    setAdditionalImageFiles(null);
+    setExistingImageUrl('');
+    setExistingAdditionalImages([]);
   };
 
   if (authLoading) return <div className="min-h-screen flex items-center justify-center text-white">Loading...</div>;
@@ -87,9 +163,18 @@ export function Admin() {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Add Project Form */}
+          {/* Add/Edit Project Form */}
           <div className="lg:col-span-1 glass-card p-6 h-fit">
-            <h2 className="text-2xl font-bold text-white mb-6">Add New Project</h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-white">
+                {editingId ? 'Edit Project' : 'Add New Project'}
+              </h2>
+              {editingId && (
+                <button onClick={resetForm} className="text-slate-400 hover:text-white transition-colors">
+                  <X size={20} />
+                </button>
+              )}
+            </div>
             
             {message && (
               <div className="p-4 mb-6 rounded-lg bg-slate-800/50 border border-cyan-500/30 text-cyan-300 text-sm">
@@ -97,7 +182,7 @@ export function Admin() {
               </div>
             )}
 
-            <form onSubmit={handleAddProject} className="space-y-4">
+            <form onSubmit={handleAddOrUpdateProject} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-400 mb-1">Title</label>
                 <input type="text" value={title} onChange={e => setTitle(e.target.value)} required className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none" />
@@ -112,19 +197,56 @@ export function Admin() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Description</label>
-                <textarea value={description} onChange={e => setDescription(e.target.value)} required rows={3} className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none resize-none" />
+                <label className="block text-sm font-medium text-slate-400 mb-1">Tags (comma separated)</label>
+                <input type="text" value={tags} onChange={e => setTags(e.target.value)} placeholder="React, Node.js, Tailwind" className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Image URL</label>
-                <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)} required className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none" />
+                <label className="block text-sm font-medium text-slate-400 mb-1">Description</label>
+                <textarea value={description} onChange={e => setDescription(e.target.value)} required rows={4} className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none resize-none" />
               </div>
+              
+              <div className="p-4 border border-slate-700 rounded-lg bg-slate-900/30">
+                <label className="block text-sm font-medium text-slate-400 mb-2">Main Image</label>
+                {existingImageUrl && !mainImageFile && (
+                  <img src={existingImageUrl} alt="Current main" className="w-full h-32 object-cover rounded-lg mb-2 opacity-70" />
+                )}
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  onChange={e => setMainImageFile(e.target.files ? e.target.files[0] : null)} 
+                  className="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-500/20 file:text-cyan-400 hover:file:bg-cyan-500/30" 
+                />
+              </div>
+
+              <div className="p-4 border border-slate-700 rounded-lg bg-slate-900/30">
+                <label className="block text-sm font-medium text-slate-400 mb-2">Additional Gallery Images</label>
+                {existingAdditionalImages.length > 0 && (
+                  <div className="flex gap-2 overflow-x-auto mb-2 pb-2">
+                    {existingAdditionalImages.map((img, i) => (
+                      <img key={i} src={img} alt={`Gallery ${i}`} className="w-16 h-16 object-cover rounded-lg opacity-70 shrink-0" />
+                    ))}
+                  </div>
+                )}
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  multiple
+                  onChange={e => setAdditionalImageFiles(e.target.files)} 
+                  className="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500/20 file:text-blue-400 hover:file:bg-blue-500/30" 
+                />
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-slate-400 mb-1">Live URL (Optional)</label>
                 <input type="url" value={liveUrl} onChange={e => setLiveUrl(e.target.value)} className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none" />
               </div>
-              <button type="submit" disabled={loading} className="w-full py-3 rounded-lg bg-cyan-600 text-white font-semibold hover:bg-cyan-500 transition-colors">
-                {loading ? 'Adding...' : 'Add Project'}
+              <div>
+                <label className="block text-sm font-medium text-slate-400 mb-1">GitHub URL (Optional)</label>
+                <input type="url" value={githubUrl} onChange={e => setGithubUrl(e.target.value)} className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 outline-none" />
+              </div>
+              
+              <button type="submit" disabled={loading} className="w-full py-3 rounded-lg bg-cyan-600 text-white font-semibold hover:bg-cyan-500 transition-colors flex items-center justify-center gap-2">
+                {loading ? 'Saving...' : editingId ? 'Update Project' : 'Add Project'}
               </button>
             </form>
           </div>
@@ -137,17 +259,28 @@ export function Admin() {
                 <div className="glass-card p-8 text-center text-slate-400">No projects found.</div>
               ) : (
                 projects.map(project => (
-                  <div key={project.id} className="glass-card p-4 flex items-center justify-between">
+                  <div key={project.id} className="glass-card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                      <img src={project.image_url} alt={project.title} className="w-16 h-16 object-cover rounded-lg" />
+                      <img src={project.image_url} alt={project.title} className="w-20 h-20 object-cover rounded-lg" />
                       <div>
-                        <h3 className="text-white font-bold">{project.title}</h3>
-                        <p className="text-sm text-slate-400">{project.category}</p>
+                        <h3 className="text-white font-bold text-lg">{project.title}</h3>
+                        <p className="text-sm text-cyan-400 mb-1">{project.category}</p>
+                        <div className="flex gap-2">
+                          {project.tags?.slice(0, 3).map((tag, i) => (
+                            <span key={i} className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300">{tag}</span>
+                          ))}
+                          {project.tags && project.tags.length > 3 && <span className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300">+{project.tags.length - 3}</span>}
+                        </div>
                       </div>
                     </div>
-                    <button onClick={() => handleDelete(project.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-colors">
-                      <Trash2 size={20} />
-                    </button>
+                    <div className="flex items-center gap-2 self-end sm:self-auto">
+                      <button onClick={() => handleEdit(project)} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded-lg transition-colors">
+                        <Edit2 size={20} />
+                      </button>
+                      <button onClick={() => handleDelete(project.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-colors">
+                        <Trash2 size={20} />
+                      </button>
+                    </div>
                   </div>
                 ))
               )}
