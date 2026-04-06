@@ -4,7 +4,6 @@ import { SEO } from '../components/SEO';
 import { Section } from '../components/ui/Section';
 import { supabase, Project } from '../lib/supabase';
 import { ExternalLink } from 'lucide-react';
-import { DesignGallery } from '../components/DesignGallery';
 
 export function Portfolio() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -113,9 +112,6 @@ export function Portfolio() {
           </div>
         )}
       </Section>
-
-      {/* Section 4: Static Design Gallery */}
-      <DesignGallery />
 
       {/* Section 5: Case Studies (Placeholder) */}
       <Section id="portfolio-casestudies" className="bg-slate-900/30" animation="slide-right">

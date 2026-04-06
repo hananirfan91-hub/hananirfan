@@ -19,3 +19,12 @@ export type Project = {
   additional_images?: string[];
   created_at: string;
 };
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  content: string;
+  image_url?: string;
+  tags?: string[];
+  created_at: string;
+};
