@@ -13,10 +13,10 @@ export function Footer() {
             Building advanced AI-powered digital experiences, full-stack applications, and striking graphic designs.
           </p>
           <div className="flex gap-4">
-            <a href="https://instagram.com/tearswithhanan/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">
+            <a href="https://instagram.com/hananirfan2026" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">
               <Instagram size={18} />
             </a>
-            <a href="https://tiktok.com/@pathan_x_babarian565" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors font-bold">
+            <a href="https://tiktok.com/@pathan_x_babrian565" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors font-bold">
               TK
             </a>
             <a href="https://facebook.com/HananIrfan001" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">
@@ -42,13 +42,10 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-semibold mb-4">Services</h4>
+          <h4 className="text-white font-semibold mb-4">Legal</h4>
           <div className="flex flex-col gap-2 text-sm text-slate-400">
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">Full Stack Development</Link>
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">Graphic Design</Link>
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">YouTube Automation</Link>
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">MS Office Expert</Link>
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">Vibe Coder</Link>
+            <Link to="/privacy-policy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

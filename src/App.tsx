@@ -17,6 +17,8 @@ import { BlogPostDetails } from './pages/BlogPostDetails';
 import { Contact } from './pages/Contact';
 import { Auth } from './pages/Auth';
 import { Admin } from './pages/Admin';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfService } from './pages/TermsOfService';
 
 export default function App() {
   return (
@@ -35,6 +37,8 @@ export default function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="auth" element={<Auth />} />
               <Route path="admin" element={<Admin />} />
+              <Route path="privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="terms-of-service" element={<TermsOfService />} />
             </Route>
           </Routes>
         </Router>

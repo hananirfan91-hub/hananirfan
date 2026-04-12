@@ -88,7 +88,7 @@ export function Contact() {
             </div>
 
             <div className="flex gap-4">
-              <a href="https://instagram.com/tearswithhanan/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">
+              <a href="https://instagram.com/hananirfan2026" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">
                 <Instagram size={20} />
               </a>
               <a href="https://facebook.com/HananIrfan001" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">
