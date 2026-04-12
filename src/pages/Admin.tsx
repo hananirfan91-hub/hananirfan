@@ -325,7 +325,7 @@ export function Admin() {
               Manage Blog
             </button>
           </div>
-          {activeTab === 'blog' && blogPosts.length === 0 && (
+          {activeTab === 'blog' && (
             <button 
               onClick={handleSeedBlogPosts}
               disabled={loading}
