@@ -86,7 +86,7 @@ export function Admin() {
       }
 
       if (additionalImageFiles && additionalImageFiles.length > 0) {
-        const uploadPromises = Array.from(additionalImageFiles).map(file => uploadImage(file));
+        const uploadPromises = Array.from(additionalImageFiles).map(file => uploadImage(file as File));
         const newImageUrls = await Promise.all(uploadPromises);
         finalAdditionalImages = [...finalAdditionalImages, ...newImageUrls];
       }

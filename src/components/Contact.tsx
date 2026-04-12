@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Section } from './ui/Section';
 import { Mail, MapPin, Instagram, Send, Facebook, Twitter, Youtube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -11,7 +11,7 @@ export function Contact() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error' | null; text: string }>({ type: null, text: '' });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setStatus({ type: null, text: '' });

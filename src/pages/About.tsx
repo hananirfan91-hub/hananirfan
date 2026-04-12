@@ -69,4 +69,4 @@ export function About() {
       </Section>
     </>
   );
-} here is my about page code please update code and new sections and modified plz nd add animations just like professional and seo optiized
+}

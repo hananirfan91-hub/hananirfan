@@ -10,7 +10,7 @@ export function SEO({ title, description, keywords }: SEOProps) {
   const defaultKeywords = "Hanan Irfan, Graphic Designer, Full Stack Developer, Vibe Coder, MS Office Expert, YouTube Automation, Developer, React, Supabase";
   
   return (
-    <Helmet>
+    <Helmet htmlAttributes={{ lang: 'en' }}>
       <title>{title} | Hanan Irfan</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords} />

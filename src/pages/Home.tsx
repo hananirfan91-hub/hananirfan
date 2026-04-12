@@ -10,7 +10,7 @@ export function Home() {
   return (
     <>
       <SEO 
-        title="Home" 
+        title="Full Stack Developer & Graphic Designer Portfolio" 
         description="Hanan Irfan - Developer, Full Stack Developer, Graphic Designer, Vibe Coder, and YouTube Automation Expert." 
       />
       
