@@ -9,8 +9,8 @@ export function Footer() {
           <Link to="/" className="text-2xl font-bold tracking-tighter text-white mb-4 block">
             Hanan<span className="text-cyan-400">.</span>
           </Link>
-          <p className="text-slate-400 max-w-sm mb-6">
-            Building advanced AI-powered digital experiences, full-stack applications, and striking graphic designs.
+          <p className="text-slate-400 max-w-sm mb-6 leading-relaxed">
+            I am a passionate Full-Stack Developer and Graphic Designer based in Pakistan. I specialize in building highly scalable applications, beautiful user interfaces, and automated digital workflows that solve complex business problems.
           </p>
           <div className="flex gap-4">
             <a href="https://instagram.com/hananirfan2026" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition-colors">

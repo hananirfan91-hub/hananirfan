@@ -16,9 +16,14 @@ export function Contact() {
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
           Get in <span className="text-gradient">Touch</span>
         </h1>
-        <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-          Have a project in mind or just want to say hi? I'm always open to discussing new opportunities.
-        </p>
+        <div className="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed space-y-4">
+          <p>
+            Have a project in mind, need a freelance developer, or just want to say hi? I'm always open to discussing new opportunities, creative ideas, or how I can help bring your digital vision to life.
+          </p>
+          <p className="text-lg">
+            Whether you need a complete full-stack web application built from scratch, a brand identity redesign, or technical consulting on your existing codebase, feel free to drop me a message. I strive to respond to all serious inquiries within 24 to 48 hours.
+          </p>
+        </div>
       </Section>
 
       {/* Section 2: Contact Info Cards */}

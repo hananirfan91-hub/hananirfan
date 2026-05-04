@@ -53,12 +53,20 @@ export function About() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Bridging the gap between <span className="text-gradient">Design & Intelligence</span>
           </h2>
-          <p className="text-slate-400 text-lg leading-relaxed mb-6">
-            I'm Hanan Irfan, an 18-year-old multidisciplinary developer and student at KFUEIT in RYK, currently in my 4th semester. I specialize in combining the analytical power of Artificial Intelligence with the creative finesse of Full Stack Development and Graphic Design.
-          </p>
-          <p className="text-slate-400 text-lg leading-relaxed mb-8">
-            Whether it's training a neural network, architecting a scalable backend, designing a pixel-perfect user interface, or automating workflows, I thrive on building end-to-end digital experiences that solve real problems.
-          </p>
+          <div className="text-slate-400 text-lg leading-relaxed mb-6 space-y-4">
+            <p>
+              I'm Hanan Irfan, an 18-year-old multidisciplinary developer and student at Khwaja Fareed University of Engineering and Information Technology (KFUEIT) in Rahim Yar Khan, Pakistan. Currently in my 4th semester, I have dedicated myself to mastering the intersection of robust backend engineering, beautiful frontend interfaces, and cutting-edge data architecture.
+            </p>
+            <p>
+              My journey in the tech world began with a deep curiosity for how things work behind the screens. I quickly realized that writing clean, performant code was only half the battle; the other half is presenting that information in a way that is intuitive, accessible, and visually striking. That realization pushed me to master not just software development frameworks like React, Node.js, and Supabase, but also professional graphic design principles.
+            </p>
+            <p>
+              Today, I specialize in combining the analytical power of Artificial Intelligence with the creative finesse of Full Stack Development. Whether it's training a neural network, architecting a highly scalable backend architecture, designing a pixel-perfect user interface, or automating complex workflows for YouTube content creators, I thrive on building end-to-end digital experiences that solve real-world problems.
+            </p>
+            <p>
+              Beyond traditional coding, I am a firm believer in the "Vibe Coding" philosophy—getting into a deep state of flow where rapid prototyping and creative problem-solving take over. My goal with every project, big or small, is to deliver web applications that not only function flawlessly under heavy traffic but also provide an incredibly engaging experience for the end-user.
+            </p>
+          </div>
           
           <div className="flex gap-8">
             {stats.map((stat, i) => (

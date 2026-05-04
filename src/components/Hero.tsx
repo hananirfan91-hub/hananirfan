@@ -64,7 +64,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="text-xl text-slate-400 font-medium mb-8 max-w-lg leading-relaxed"
           >
-            Building AI-powered digital experiences. I blend code, design, and intelligence to create products that stand out.
+            I architect highly scalable full-stack web applications and craft striking visual brand identities. Blending deep technical expertise in React and Node.js with a keen eye for user experience design, I build digital products that perform as beautifully as they look.
           </motion.p>
 
           <motion.div

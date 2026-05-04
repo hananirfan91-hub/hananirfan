@@ -50,9 +50,14 @@ export function Portfolio() {
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
           My <span className="text-gradient">Portfolio</span>
         </h1>
-        <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-          A showcase of my latest projects, ranging from full-stack web applications to creative graphic designs.
-        </p>
+        <div className="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed space-y-4 text-left md:text-center">
+          <p>
+            Welcome to my digital workspace. Here you will find a curated selection of my latest projects, ranging from highly scalable full-stack web applications to creative, brand-defining graphic designs. Every project below represents a unique problem solved through a combination of engineering, design theory, and innovative thinking.
+          </p>
+          <p className="text-lg">
+            I believe that a strong portfolio shouldn't just show the final glamorous product; it should represent the rigorous methodology, the thousands of lines of code, and the iterative design process that brought the concept to life. Feel free to explore the projects across different categories to see my versatility in action.
+          </p>
+        </div>
       </Section>
 
       {/* Section 2: Filters */}
@@ -113,13 +118,36 @@ export function Portfolio() {
         )}
       </Section>
 
-      {/* Section 5: Case Studies (Placeholder) */}
-      <Section id="portfolio-casestudies" className="bg-slate-900/30" animation="slide-right">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">In-Depth Case Studies</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg mb-8">
-            Detailed breakdowns of my most complex projects are coming soon.
-          </p>
+      {/* Section 5: Engineering Methodology */}
+      <Section id="portfolio-methodology" className="bg-slate-900/30" animation="slide-right">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-6">Development Methodology</h2>
+            <p className="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed">
+              Behind every successful project in this portfolio is a strict adherence to modern engineering principles. I approach every build with a focus on three core pillars: Performance, Scalability, and User Experience.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="glass-card p-8">
+              <h3 className="text-xl font-bold text-cyan-400 mb-4">01. Architecture First</h3>
+              <p className="text-slate-300 leading-relaxed">
+                Before writing a single line of React code, I design robust database schemas using PostgreSQL (via Supabase) to ensure data integrity. I map out API endpoints carefully, prioritizing security protocols like Row Level Security and OAuth integrations to keep user data impenetrable.
+              </p>
+            </div>
+            <div className="glass-card p-8">
+              <h3 className="text-xl font-bold text-purple-400 mb-4">02. Modern Toolchains</h3>
+              <p className="text-slate-300 leading-relaxed">
+                I leverage the absolute best modern development toolchains. My frontend environments are powered by Vite for lightning-fast hot module replacement, strictly typed with TypeScript to catch errors at compile-time, and styled beautifully using utility-first frameworks like Tailwind CSS.
+              </p>
+            </div>
+            <div className="glass-card p-8">
+              <h3 className="text-xl font-bold text-blue-400 mb-4">03. Responsive & Accessible</h3>
+              <p className="text-slate-300 leading-relaxed">
+                A project isn't finished until it looks mathematically perfect on a 4K monitor and flawlessly intuitive on a mobile device. I implement heavy cross-browser testing, SEO best practices through semantic HTML elements, and ARIA labels to ensure digital accessibility for all users.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
 

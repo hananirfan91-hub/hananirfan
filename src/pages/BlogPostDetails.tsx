@@ -4,6 +4,8 @@ import { supabase, BlogPost } from '../lib/supabase';
 import { SEO } from '../components/SEO';
 import { Section } from '../components/ui/Section';
 import { ArrowLeft, Calendar } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export function BlogPostDetails() {
   const { id } = useParams<{ id: string }>();
@@ -40,7 +42,7 @@ export function BlogPostDetails() {
           
           {post.image_url && (
             <div className="glass-card overflow-hidden mb-12 rounded-2xl">
-              <img src={post.image_url} alt={post.title} className="w-full max-h-[500px] object-cover" />
+              <img src={post.image_url} alt={post.title} className="w-full max-h-[600px] object-cover" />
             </div>
           )}
 
@@ -49,7 +51,7 @@ export function BlogPostDetails() {
               <Calendar size={16} />
               {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{post.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">{post.title}</h1>
             
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-8">
@@ -62,12 +64,11 @@ export function BlogPostDetails() {
             )}
           </div>
 
-          <div className="glass-card p-8 md:p-12 rounded-2xl">
-            <div className="prose prose-invert prose-lg max-w-none">
-              {/* Simple rendering for now, can be upgraded to markdown later if needed */}
-              <div className="text-slate-300 leading-relaxed whitespace-pre-wrap font-sans">
+          <div className="glass-card p-8 md:p-12 rounded-2xl font-sans">
+            <div className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-img:rounded-xl">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {post.content}
-              </div>
+              </ReactMarkdown>
             </div>
           </div>
         </div>

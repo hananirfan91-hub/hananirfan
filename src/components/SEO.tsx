@@ -24,6 +24,25 @@ export function SEO({ title, description, keywords }: SEOProps) {
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:title" content={`${title} | Hanan Irfan`} />
       <meta property="twitter:description" content={description} />
+
+      {/* JSON-LD Schema Data */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Hanan Irfan",
+          "jobTitle": "Full Stack Developer",
+          "url": "https://hananirfanportfolio1.vercel.app/",
+          "sameAs": [
+            "https://instagram.com/hananirfan2026",
+            "https://tiktok.com/@pathan_x_babrian565",
+            "https://facebook.com/HananIrfan001",
+            "https://x.com/hananirfan91",
+            "https://www.youtube.com/@ancientmystery-0"
+          ],
+          "knowsAbout": ["Full Stack Development", "React", "Supabase", "Graphic Design", "YouTube Automation", "Artificial Intelligence"]
+        })}
+      </script>
     </Helmet>
   );
 }

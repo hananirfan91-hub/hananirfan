@@ -6,38 +6,38 @@ export function Services() {
   const services = [
     {
       icon: <Monitor size={40} className="text-blue-400" />,
-      title: "Full Stack Development",
-      desc: "End-to-end web applications using React, Node.js, and Supabase. Scalable, secure, and blazing fast.",
+      title: "Full Stack Web Development",
+      desc: "I build robust, end-to-end web applications starting from the database all the way to the user interface. Utilizing modern frameworks like React and Next.js alongside powerful backend solutions like Node.js and Supabase, I ensure that every application is highly scalable, securely constructed, and blazing fast. This includes custom RESTful APIs, complex database relationships, and highly interactive frontend experiences tailored to unique business needs.",
       features: ["Custom Web Apps", "API Development", "Database Design", "Performance Optimization"]
     },
     {
       icon: <PenTool size={40} className="text-purple-400" />,
-      title: "Graphic Design",
-      desc: "Striking visual identities, UI/UX design, and marketing materials that capture attention.",
+      title: "Professional Graphic Design",
+      desc: "Great development requires great design. I create striking visual identities, complete UI/UX wireframes, and compelling marketing materials that capture immediate user attention. By bridging the gap between aesthetics and functionality, I ensure that your brand's digital presence is not only beautiful but intuitively guides users towards their goals. My design process includes competitor research, mood boarding, and highly iterative prototyping.",
       features: ["Logo Design", "UI/UX Wireframing", "Social Media Posts", "Brand Identity"]
     },
     {
       icon: <Youtube size={40} className="text-red-400" />,
-      title: "YouTube Automation",
-      desc: "Setting up and managing automated content pipelines for YouTube channels to maximize growth.",
+      title: "YouTube Automation & Ops",
+      desc: "Running a successful YouTube channel requires more than just making videos; it requires systems. I specialize in setting up and managing automated content pipelines for YouTube channels. This includes standardizing video editing workflows, writing SEO-optimized metadata, generating high-conversion thumbnails, and using AI to speed up script generation. My strategies are designed to maximize audience retention and overall channel growth.",
       features: ["Script Generation", "Video Editing Pipelines", "Thumbnail Design", "SEO Optimization"]
     },
     {
       icon: <FileSpreadsheet size={40} className="text-green-400" />,
-      title: "MS Office Expert",
-      desc: "Advanced data analysis, automated spreadsheets, and professional presentations.",
+      title: "MS Office & Data Analysis",
+      desc: "Data is useless if it cannot be understood. I offer advanced data analysis, automated spreadsheet solutions, and professional corporate presentations. By utilizing Excel Macros, VBA scripting, and dynamic PowerBI dashboards, I help businesses process complex information rapidly. Whether it's cleaning up massive datasets or creating a pitch deck that secures investment, I deliver accuracy and clarity.",
       features: ["Excel Macros/VBA", "Data Visualization", "PowerPoint Pitch Decks", "Word Formatting"]
     },
     {
       icon: <Sparkles size={40} className="text-cyan-400" />,
-      title: "Vibe Coder",
-      desc: "Rapid prototyping and bringing ideas to life with modern AI tools and flow-state development.",
+      title: "Vibe Coding & Rapid Prototyping",
+      desc: "When speed is the highest priority, 'Vibe Coding' takes over. This involves dropping into a deep flow state to rapidly prototype minimum viable products (MVPs). By leveraging modern AI developer tools, rapid application development frameworks, and a highly intuitive coding approach, I can bring complex ideas to life in a fraction of the traditional time without sacrificing core functionality.",
       features: ["MVP Development", "AI Integration", "Rapid Prototyping", "Creative Coding"]
     },
     {
       icon: <Server size={40} className="text-orange-400" />,
-      title: "Backend & Cloud",
-      desc: "Robust server architectures and cloud deployments ensuring 99.9% uptime.",
+      title: "Backend Architecture & Cloud",
+      desc: "Your application's foundation must be rock solid. I design robust server architectures and cloud deployments ensuring 99.9% uptime. By utilizing platforms like Supabase, Firebase, AWS, and GCP, I build serverless functions that scale linearly with traffic. I also conduct security audits and implement strict Row Level Security (RLS) policies to ensure that your users' data remains completely safe.",
       features: ["Supabase / Firebase", "AWS / GCP", "Serverless Functions", "Security Audits"]
     }
   ];
